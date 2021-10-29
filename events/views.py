@@ -19,6 +19,9 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     serializer_class = AppointmentSerializers
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    
 
 class AppView(generics.ListAPIView):
     serializer_class = App
