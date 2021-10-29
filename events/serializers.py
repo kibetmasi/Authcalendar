@@ -15,6 +15,7 @@ class AppointmentSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 class App(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(many=False)
     class Meta:
         model = Appointments
         fields = "__all__"

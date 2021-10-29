@@ -33,6 +33,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 
+CRISPY_TEMPLATE_PACK="bootstrap4"
+
 
 
 # Application definition
@@ -46,6 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'events',
     "corsheaders",
+    # "accounts",
+    "crispy_forms",
+    # 'main.apps.MainConfig',
 ]
 
 MIDDLEWARE = [

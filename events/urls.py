@@ -14,5 +14,6 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path('apii', views.AppView.as_view()),
-    path('update/<pk>', views.AppView2.as_view())
+    path("register/", views.register, name="register"),  # <-- added
+    # path('update/<pk>', views.AppView2.as_view())
 ]
