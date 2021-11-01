@@ -47,9 +47,9 @@ def register(response):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(response, user)
-            return redirect('http://localhost:4200/')
+            return redirect('https://pesapalscheduler.netlify.app/')
 
-        return redirect("http://localhost:8000/register/")
+        return redirect("https://pesapalscheduler2.herokuapp.com/register/")
 
     else:
 	    form = RegisterForm()
