@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'events',
     "corsheaders",
-    "crispy_forms",
     'rest_framework.authtoken',
 ]
 
