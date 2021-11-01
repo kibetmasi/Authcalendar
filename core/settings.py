@@ -48,9 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'events',
     "corsheaders",
-    # "accounts",
     "crispy_forms",
-    # 'main.apps.MainConfig',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +121,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),

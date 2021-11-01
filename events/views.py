@@ -7,6 +7,7 @@ from events.permissions import ReadOnly
 from .serializers import AppointmentSerializers, UserSerializer, App
 from rest_framework import generics
 from .forms import RegisterForm
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -30,15 +31,26 @@ class AppView(generics.ListCreateAPIView):
         user = self.request.user
         return Appointments.objects.filter(user=user)
 
+class AppView2(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = App
+
+    def get_queryset(self):
+        user = self.request.user
+        return Appointments.objects.filter(user=user)
+
 def register(response):
-    if response.method == "POST":
+    if response.method == 'POST':
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(response, user)
+            return redirect('http://localhost:4200/')
 
         return redirect("http://localhost:8000/register/")
 
     else:
 	    form = RegisterForm()
-
     return render(response, "django_registration/registration_form.html", {"form":form})
