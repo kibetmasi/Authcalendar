@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'events',
     "corsheaders",
     "crispy_forms",
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
