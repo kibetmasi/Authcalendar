@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
-
+from softdelete.models import SoftDeleteObject
 
 # Create your models here.
+
 # Model for HQ
-class Appointments(models.Model): 
+class Appointments(SoftDeleteObject ,models.Model):  
     user=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=40)
     start = models.DateTimeField()
