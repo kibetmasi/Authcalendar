@@ -67,7 +67,7 @@ def register(response):
             send_mail( subject, message, 'scheduler@pesapal.com', recipient_list )
             return redirect('https://pesapalscheduler.netlify.app/')
 
-        return redirect("http://localhost:8000/register/")
+        return redirect("https://pesapalscheduler2.herokuapp.com/register/")
 
     else:
 	    form = RegisterForm()
