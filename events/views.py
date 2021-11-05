@@ -1,3 +1,4 @@
+from django.core import mail
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -8,6 +9,9 @@ from .serializers import AppointmentSerializers, UserSerializer, App
 from rest_framework import generics
 from .forms import RegisterForm
 from django.contrib.auth import login, authenticate
+from django.conf import settings
+
+from django.core.mail import send_mail
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -45,11 +49,25 @@ def register(response):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            mail = form.cleaned_data.get('email')
             user = authenticate(username=username, password=raw_password)
             login(response, user)
+            subject = 'welcome to Pesapal Scheduler!!!!!'
+            message = f'''
+                Hi {username}, 
+                Thank you for registering your account to Pesapal Scheduler.
+                Kindly contact your head of department to activate your account.
+
+                Regards,
+                Boardroom Scheduler 
+                
+            '''
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [mail, ]
+            send_mail( subject, message, 'scheduler@pesapal.com', recipient_list )
             return redirect('https://pesapalscheduler.netlify.app/')
 
-        return redirect("https://pesapalscheduler2.herokuapp.com/register/")
+        return redirect("http://localhost:8000/register/")
 
     else:
 	    form = RegisterForm()

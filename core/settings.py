@@ -68,7 +68,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         'DIRS': [os.path.join(BASE_DIR, "templates")],
+         'DIRS': [os.path.join(BASE_DIR, "templates",)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,6 +84,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'markm@pesapal.com'
+DEFAULT_FROM_EMAIL = "scheduler.pesapal.com"
+EMAIL_HOST_PASSWORD = 'xsmtpsib-5fd6c0e6d9db161501c03ff6f28fb2daa7c1ac911a3b6181d8e3a0ebfb6addb1-fs2B7cDqYZAhISK1'
 
 
 # Database

@@ -4,7 +4,17 @@
 {% block content %}
     <form method="POST" class="form-group">
 	{% csrf_token %}
-	{{ form|crispy }}
+	<tr><th><label for="id_username">Username:</label></th><td><input type="text" name="username" maxlength="150" autofocus required id="id_username"><br><span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></td></tr><br>
+<tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" required id="id_email"></td></tr><tr><th><br><br><label for="id_password1">Password:</label></th><td><input type="password" name="password1" autocomplete="new-password" required id="id_password1"><br><span class="helptext"><ul><li>Your password can’t be too similar 
+to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul></span></td></tr><br>
+<tr><th><label for="id_password2">Password confirmation:</label></th><td><input type="password" name="password2" autocomplete="new-password" required id="id_password2"><br><span class="helptext">Enter the same password as before, for verification.</span></td></tr><br>
+<tr><th><label for="id_first_name">First name:</label></th><td><input type="text" name="first_name" maxlength="150" id="id_first_name"></td></tr><br><br>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input type="text" name="last_name" maxlength="150" id="id_last_name"></td></tr><br>
+
+<div style="display:none; visibility: hidden;">
+    <tr><th><label for="id_is_active">Active:</label></th><td><input type="checkbox" name="is_active" id="id_is_active" ><br><span class="helptext"  >Designates whether this user should be treated as active. Unselect this instead of deleting accounts.</span></td></tr><br>
+
+</div>
 	<button type="submit" class="btn btn-success">Register</button>
     </form>
 {% endblock %}
