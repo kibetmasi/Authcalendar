@@ -6,7 +6,6 @@ from softdelete.models import SoftDeleteObject
 
 import randomcolor
 
-# Create your models here.
 
 # Model for HQ
 class Appointments(SoftDeleteObject ,models.Model):  
