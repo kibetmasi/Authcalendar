@@ -5,11 +5,12 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
 from events.models import Appointments
 from events.permissions import ReadOnly
-from .serializers import AppointmentSerializers, UserSerializer, App
+from .serializers import AppointmentSerializers, UserSerializer, App, x
 from rest_framework import generics
 from .forms import RegisterForm
 from django.contrib.auth import login, authenticate
 from django.conf import settings
+from .models import *
 
 from django.core.mail import send_mail
 
@@ -28,12 +29,19 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
     
 
-class AppView(generics.ListCreateAPIView):
+class AppView(generics.ListAPIView):
     serializer_class = App
-
     def get_queryset(self):
         user = self.request.user
         return Appointments.objects.filter(user=user)
+
+class notes(viewsets.ModelViewSet):
+    queryset = notes.objects.all()
+    serializer_class = x
+    permission_classes = (ReadOnly, )
+
+
+    
 
 class AppView2(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = App

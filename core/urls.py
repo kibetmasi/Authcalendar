@@ -7,4 +7,5 @@ urlpatterns = [
     path('', include("events.urls")),
     path(r'api-token-auth/', obtain_jwt_token),
     path(r'api-token-refresh/', refresh_jwt_token),
+    path('_nested_admin/', include('nested_admin.urls')),
 ]

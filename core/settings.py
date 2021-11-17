@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "crispy_forms",
     "softdelete",
+    'nested_admin',
 
     # 'rest_framework.authtoken',
 ]
@@ -136,6 +137,8 @@ REST_FRAMEWORK = {
     ),
 }
 
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),
@@ -147,7 +150,7 @@ JWT_AUTH = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 

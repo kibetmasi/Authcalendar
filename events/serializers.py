@@ -1,12 +1,13 @@
 from django.contrib.auth.models import User
 from django.db import models
 from rest_framework import fields, serializers
-from .models import Appointments
+
+from events.permissions import ReadOnly
+from .models import Appointments, notes
 from datetimerange import DateTimeRange
 from django.core.exceptions import ValidationError
 
-from django.db.models import fields, Q 
- 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -36,4 +37,9 @@ class App(serializers.ModelSerializer):
     user = serializers.StringRelatedField(many=False)
     class Meta:
         model = Appointments
+        fields = "__all__"
+
+class x(serializers.ModelSerializer):
+    class Meta:
+        model = notes
         fields = "__all__"
